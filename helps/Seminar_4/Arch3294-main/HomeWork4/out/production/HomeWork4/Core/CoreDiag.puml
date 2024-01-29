@@ -1,0 +1,130 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Customer implements ICustomer {
+    - TicketProvider ticketProvider
+    - CashProvider cashProvider
+    - UserProvider clientProvider
+    - IUser client
+    - ITicket[] selectedTickets
+
+    + Customer(IClient)
+    + getSelectedTickets(): ITicket[]
+    + setSelectedTickets(ITicket[])
+    + getClientProvider(): UserProvider
+    + getClient(): IUser
+    + setClient(IClient)
+    + buyTicket(ITicket): boolean
+    + searchTicket(Date, int): ITicket[]
+}
+
+class TicketProvider {
+    - ITicketRepo ticketRepo
+
+    + TicketProvider()
+    + getTickets(int): ITicket[]
+    + updateTicketStatus(ITicket): boolean
+}
+
+class UserProvider {
+    - IUserRepo clientRepository
+
+    + UserProvider()
+    + createClient(int, String, int, long): int
+    + getClientByName(String): IUser
+    + getAllClients(): IUser[]
+}
+
+class CashProvider {
+    - long cardNumber
+    - boolean isAuthorized
+    - ICarrierRepo carrierRepository
+    - ICashRepo cashRepository
+
+    + CashProvider(long)
+    + buy(ITicket): boolean
+    + authorization(IClient)
+}
+
+interface IUser {
+    - int id
+    - String userName
+    - int hashPassword
+    - long cardNumber
+
+    + getId(): int
+    + getUserName(): String
+    + getHashPassword(): int
+    + getCardNumber(): long
+    + toString(): String
+    + equals(Object): boolean
+    + equals(Client): boolean
+    + hashCode(): int
+}
+
+interface ITicket {
+    - int routeNumber
+    - int place
+    - int price
+    - Date date
+    - boolean isValid
+
+    + Ticket(int, int, int, Date, boolean)
+    + getRouteNumber(): int
+    + getPlace(): int
+    + getPrice(): int
+    + getDate(): Date
+    + getValid(); boolean
+    + setValid(boolean)
+    + toString(): String
+    + toPrint(): String
+    + hashCode(): int
+    + equals(Object): boolean
+    + equals(Ticket): boolean
+}
+
+interface ICustomer {
+    getClient(): IUser
+    setClient(IClient)
+    getClientProvider(): UserProvider
+    buyTicket(ITicket): boolean
+    searchTicket(Date, int): ITicket
+}
+
+interface ICarrierRepo {
+     read(int): Carrier
+}
+
+interface ICashRepo {
+    transaction(int, long, long): boolean
+}
+
+interface IUserRepo {
+    create(IClient): int
+    read(int): IUser
+    read(String): IUser
+    readAll(): IUser[]
+    update(IClient): boolean
+    delete(IClient): boolean
+}
+
+interface ITicketRepo {
+    create(ITicket): boolean
+    readAll(int): Ticket[]
+    update(ITicket): boolean
+    delete(ITicket): boolean
+}
+
+
+Customer --* TicketProvider
+Customer --* CashProvider
+Customer --* UserProvider
+Customer --> IUser
+Customer "1" --> "1..*" ITicket
+
+TicketProvider --o ITicketRepo
+CashProvider --o ICashRepo
+CashProvider --o ICarrierRepo
+UserProvider --o IUserRepo
+
+@enduml

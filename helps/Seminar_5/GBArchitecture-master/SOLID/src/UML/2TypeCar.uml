@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>abstracts.aCar</OriginalElement>
+  <nodes>
+    <node x="-1409.5" y="641.0">someCars.TeslaCar</node>
+    <node x="-737.3929378531072" y="198.5">fillStrat.ElectricFill</node>
+    <node x="-470.5669491525425" y="733.5">factory.GasolineFillStationFactory</node>
+    <node x="-1449.5" y="-197.0">enumsFuelType.FuelType</node>
+    <node x="-723.5669491525425" y="733.5">factory.DieselFillStationFactory</node>
+    <node x="-897.3929378531072" y="198.5">fillStrat.GasolineFill</node>
+    <node x="-927.6165254237285" y="-173.5">interfaces.iFillStation</node>
+    <node x="-442.26793785310724" y="210.5">factory.iFillStationFactory</node>
+    <node x="-1517.0" y="-44.0">abstracts.aCar</node>
+    <node x="-1039.3929378531072" y="198.5">fillStrat.DieselFill</node>
+    <node x="-198.56694915254252" y="733.5">factory.ElectricFillStationFactory</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="fillStrat.ElectricFill" target="interfaces.iFillStation" relationship="REALIZATION">
+      <point x="0.0" y="-39.0" />
+      <point x="-669.8929378531072" y="-65.0" />
+      <point x="-861.6165254237285" y="-65.0" />
+      <point x="0.0" y="27.0" />
+    </edge>
+    <edge source="factory.ElectricFillStationFactory" target="interfaces.iFillStation" relationship="DEPENDENCY">
+      <point x="80.66666666666663" y="-39.0" />
+      <point x="3.0997175141242224" y="620.0" />
+      <point x="-8.540536723163768" y="620.0" />
+      <point x="-8.540536723163768" y="-65.0" />
+      <point x="-58.3512711864405" y="-65.0" />
+      <point x="-58.3512711864405" y="-75.0" />
+      <point x="-817.6165254237285" y="-75.0" />
+      <point x="44.0" y="27.0" />
+    </edge>
+    <edge source="factory.DieselFillStationFactory" target="factory.iFillStationFactory" relationship="REALIZATION">
+      <point x="0.0" y="-39.0" />
+      <point x="-607.0669491525425" y="620.0" />
+      <point x="-270.51793785310724" y="620.0" />
+      <point x="57.25" y="27.0" />
+    </edge>
+    <edge source="factory.iFillStationFactory" target="interfaces.iFillStation" relationship="DEPENDENCY">
+      <point x="0.0" y="-27.0" />
+      <point x="-327.76793785310724" y="-65.0" />
+      <point x="-58.3512711864405" y="-65.0" />
+      <point x="-58.3512711864405" y="-75.0" />
+      <point x="-817.6165254237285" y="-75.0" />
+      <point x="44.0" y="27.0" />
+    </edge>
+    <edge source="fillStrat.DieselFill" target="interfaces.iFillStation" relationship="REALIZATION">
+      <point x="0.0" y="-39.0" />
+      <point x="-978.3929378531072" y="-65.0" />
+      <point x="-861.6165254237285" y="-65.0" />
+      <point x="0.0" y="27.0" />
+    </edge>
+    <edge source="fillStrat.GasolineFill" target="interfaces.iFillStation" relationship="REALIZATION">
+      <point x="0.0" y="-39.0" />
+      <point x="-827.3929378531072" y="-65.0" />
+      <point x="-861.6165254237285" y="-65.0" />
+      <point x="0.0" y="27.0" />
+    </edge>
+    <edge source="factory.GasolineFillStationFactory" target="fillStrat.GasolineFill" relationship="CREATE">
+      <point x="-84.0" y="-39.0" />
+      <point x="-428.5669491525425" y="570.0" />
+      <point x="-786.1165254237285" y="570.0" />
+      <point x="-786.1165254237285" y="540.0" />
+      <point x="-827.3929378531072" y="540.0" />
+      <point x="0.0" y="39.0" />
+    </edge>
+    <edge source="abstracts.aCar" target="enumsFuelType.FuelType" relationship="TO_ONE">
+      <point x="0.0" y="-281.5" />
+      <point x="-1314.5" y="-65.0" />
+      <point x="-1398.75" y="-65.0" />
+      <point x="-50.75" y="50.5" />
+    </edge>
+    <edge source="factory.DieselFillStationFactory" target="fillStrat.DieselFill" relationship="CREATE">
+      <point x="-77.66666666666674" y="-39.0" />
+      <point x="-684.7336158192093" y="580.0" />
+      <point x="-937.1165254237286" y="580.0" />
+      <point x="-937.1165254237286" y="540.0" />
+      <point x="-978.3929378531072" y="540.0" />
+      <point x="0.0" y="39.0" />
+    </edge>
+    <edge source="factory.GasolineFillStationFactory" target="factory.iFillStationFactory" relationship="REALIZATION">
+      <point x="0.0" y="-39.0" />
+      <point x="-344.5669491525425" y="620.0" />
+      <point x="-270.51793785310724" y="620.0" />
+      <point x="57.25" y="27.0" />
+    </edge>
+    <edge source="someCars.TeslaCar" target="factory.iFillStationFactory" relationship="DEPENDENCY">
+      <point x="-201.5" y="-0.0" />
+      <point x="-1534.5" y="772.5" />
+      <point x="-1534.5" y="-214.5" />
+      <point x="-312.76793785310724" y="-214.5" />
+      <point x="15.0" y="-27.0" />
+    </edge>
+    <edge source="someCars.TeslaCar" target="enumsFuelType.FuelType" relationship="DEPENDENCY">
+      <point x="134.0" y="-131.5" />
+      <point x="-1074.0" y="-131.5" />
+      <point x="101.5" y="15.0" />
+    </edge>
+    <edge source="someCars.TeslaCar" target="fillStrat.DieselFill" relationship="CREATE">
+      <point x="194.0" y="-131.5" />
+      <point x="-35.60706214689276" y="39.0" />
+    </edge>
+    <edge source="someCars.TeslaCar" target="fillStrat.GasolineFill" relationship="CREATE">
+      <point x="201.5" y="-71.5" />
+      <point x="-842.3929378531072" y="701.0" />
+      <point x="-15.0" y="39.0" />
+    </edge>
+    <edge source="factory.ElectricFillStationFactory" target="factory.iFillStationFactory" relationship="REALIZATION">
+      <point x="0.0" y="-39.0" />
+      <point x="-77.56694915254252" y="620.0" />
+      <point x="-270.51793785310724" y="620.0" />
+      <point x="57.25" y="27.0" />
+    </edge>
+    <edge source="someCars.TeslaCar" target="abstracts.aCar" relationship="GENERALIZATION">
+      <point x="-106.5" y="-131.5" />
+      <point x="-0.0" y="281.5" />
+    </edge>
+    <edge source="someCars.TeslaCar" target="interfaces.iFillStation" relationship="REALIZATION">
+      <point x="149.0" y="-131.5" />
+      <point x="-1059.0" y="-131.5" />
+      <point x="-66.0" y="15.0" />
+    </edge>
+    <edge source="factory.ElectricFillStationFactory" target="fillStrat.ElectricFill" relationship="CREATE">
+      <point x="-80.66666666666674" y="-39.0" />
+      <point x="-158.23361581920926" y="560.0" />
+      <point x="-603.7001412429377" y="560.0" />
+      <point x="-603.7001412429377" y="540.0" />
+      <point x="-669.8929378531072" y="540.0" />
+      <point x="0.0" y="39.0" />
+    </edge>
+    <edge source="someCars.TeslaCar" target="fillStrat.ElectricFill" relationship="CREATE">
+      <point x="201.5" y="-56.5" />
+      <point x="-699.7336158192093" y="716.0" />
+      <point x="-29.84067796610202" y="39.0" />
+    </edge>
+    <edge source="factory.DieselFillStationFactory" target="interfaces.iFillStation" relationship="DEPENDENCY">
+      <point x="77.66666666666663" y="-39.0" />
+      <point x="-529.4002824858758" y="600.0" />
+      <point x="-65.85833333333335" y="600.0" />
+      <point x="-65.85833333333335" y="-65.0" />
+      <point x="-58.3512711864405" y="-65.0" />
+      <point x="-58.3512711864405" y="-75.0" />
+      <point x="-817.6165254237285" y="-75.0" />
+      <point x="44.0" y="27.0" />
+    </edge>
+    <edge source="factory.GasolineFillStationFactory" target="interfaces.iFillStation" relationship="DEPENDENCY">
+      <point x="84.0" y="-39.0" />
+      <point x="-260.5669491525425" y="610.0" />
+      <point x="-53.199858757061975" y="610.0" />
+      <point x="-53.199858757061975" y="-65.0" />
+      <point x="-58.3512711864405" y="-65.0" />
+      <point x="-58.3512711864405" y="-75.0" />
+      <point x="-817.6165254237285" y="-75.0" />
+      <point x="44.0" y="27.0" />
+    </edge>
+    <edge source="someCars.TeslaCar" target="interfaces.iFillStation" relationship="TO_ONE">
+      <point x="119.0" y="-131.5" />
+      <point x="-1089.0" y="-146.5" />
+      <point x="-66.0" y="-0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="true" x="-844.5" y="368.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

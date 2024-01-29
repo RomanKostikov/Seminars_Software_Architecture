@@ -1,0 +1,346 @@
+openapi: 3.0.0
+info:
+  title: Заказ ресурсов на облаке
+  description: >-
+    Тестовый API для домашнего задания GB
+  version: 0.0.1
+  
+servers:
+  - url: http://localhost:8080/api/v1/
+    description: MAIN Jhin server
+   
+tags:
+  - name: Clouds
+    description: команды для наших облакоВ
+    
+  - name: Orders
+    description: команды для работы с заказами
+    
+  - name: Customers
+    description: команды для работы с клиентами
+    
+  - name: OS
+    description: команды для работы с операционными системами
+
+    
+paths:
+  /clouds:
+    get:
+      summary: Метод получения списка ресурсов в облаке
+      tags:
+        - Clouds
+      operationId: getAllClouds
+      responses:
+        "200" :
+          description: успешный ответ со списком ресурсов
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/Clouds"
+        "default" :
+          description: some default
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /orders: 
+    post:
+      summary: Создание заказа на облако
+      tags:
+        - Orders
+      operationId: CreateCloud
+      requestBody:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      responses:
+        "200":
+          description: Успешный ответ со списком ресурсов в облаке
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Clouds"
+        "default":
+          description: Все остальное
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+                
+  /orders/{cloud_id}:
+    get:
+      summary: Метод получения заказа на облако по ID
+      tags:
+        - Orders
+      operationId: getCloudById
+      parameters:
+        - name: cloud_id
+          in: path
+          required: true
+          description: Идентификатор заказа облака
+          schema:
+            type: string
+          example: 324987gh
+      responses:
+        "200":
+          description: Успешный ответ с заказом с облаком по ID
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Cloud"
+        "404":
+          description: Заказ с ID не найден
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "default":
+          description: Все остальное
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"              
+    delete:
+      summary: Метод отмены заказа на облако по ID
+      tags:
+        - Orders
+      operationId: canceledById
+      parameters:
+        - name: cloud_id
+          in: path
+          required: true
+          description: Идентификатор заказа облака
+          schema:
+            type: string
+          example: 324987gh
+      responses:
+        "200":
+          description: Успешный ответ с заказом с облаком по ID
+          content:
+            application/json: {}
+        "404":
+          description: Заказ с ID не найден
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "default":
+          description: Все остальное
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+                
+  /customers:
+    get:
+      summary: метод получения списка покупателей на облаке
+      tags:
+        - Customers
+      operationId: getAllCustomers
+      responses:
+        "200":
+          description: Успешный ответ со списком покупателей
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Customers"
+        "default":
+          description: Все остальное
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+                
+  /customers/{customer_id}:  
+    delete:
+      summary: Метод удаления пользователя по ID
+      tags:
+        - Customers
+      operationId: deleteUserById
+      parameters:
+        - name: customer_id
+          in: path
+          required: true
+          description: Идентификатор пользователя
+          schema:
+            type: string
+          example: 135
+      responses:
+        "200":
+          description: Успешный ответ с удалением ID
+          content:
+            application/json:
+              schema: 
+                $ref: "#/components/schemas/Customer"
+        "404":
+          description: Заказ с ID не найден
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "default":
+          description: Все остальное
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+                
+  /OS:
+    get:
+      summary: Метод получения списка операционных систем в облаке
+      tags:
+        - OS
+      operationId: getAllOSs
+      responses:
+        "200" :
+          description: успешный ответ со списком операционных систем
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/OSs"
+        "default" :
+          description: some default
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error" 
+  
+
+components:
+  schemas:
+    Cloud:
+      type: object
+      required:
+        - id_client
+        - OS
+        - RAM
+        - CPU
+        - HDD
+      properties:
+        cloud_id:
+          type: string
+          example: f102b615
+          description: ID облака
+          
+        client_id:
+          type: string
+          description: ID клиента
+          
+        OS:
+          type: string
+          enum:
+            - Windows
+            - Linux
+          description: Операционная система сервера
+        RAM: 
+          type: string
+          example: 128
+          description: Объем оперативной памяти
+        CPU:
+          type: string
+          example: 16
+          description: количество ядер процессора
+          
+    Clouds:
+      type: array
+      items: 
+         $ref: "#/components/schemas/Cloud"
+         
+    Customer:
+      type: object
+      required:
+      - id
+      - name
+      - login
+      - password
+      - phone
+      - email
+      - balance
+      properties:
+        id:
+          type: string
+          example: 135
+        name:
+          type: string
+          example: YouJhin
+        login:
+          type: string
+          example: qwerty
+          description: Ваш логин в ситеме
+        password:
+          type: string
+          example:   оченьмноготекстасциферками
+          description: Ваш пароль
+        phone:
+          type: string
+          example: 880077777
+          description: Ваш телефон
+        email:
+          type: string
+          example: user@mail.com
+          description: Ваша почта
+        balance:
+          type: string
+          example: 1 000 000 $
+          description: Ваш баланс на сервисе
+          
+    Customers:
+      type: array
+      items: 
+         $ref: "#/components/schemas/Customer" 
+    
+    OS:
+      type: object
+      required:
+      - os_id
+      - name
+      - os_group
+      - os_version
+      - language
+      - price
+          
+      properties:
+        os_id:
+          type: string
+          example: f102b615
+          description: ID операционки
+        name:
+          type: string
+          example: Linux
+          description: название операционки
+        os_group:
+          type: string
+          example: Ubuntu
+          description: название семейства ОS
+        os_version:
+          type: string
+          example: 10.5
+          description: версия ОS
+        language:
+          type: string
+          example: rus
+          description: язык ОS
+        price:
+          type: string
+          example: 200.5
+          description: цена использования ОS
+          
+    OSs:
+      type: array
+      items: 
+         $ref: "#/components/schemas/OS"
+    
+          
+    Error:
+      type: object
+      required: 
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+          
+    
